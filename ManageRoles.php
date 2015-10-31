@@ -66,6 +66,53 @@
     </nav>
 
 
+
+<div class="modal fade" id="AddRoleModal" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Add Role
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+                <form role="form">
+                  <div class="form-group">
+                    <label for="RoleName">Title</label>
+                      <input type="text" class="form-control"
+                      id="RoleName" placeholder="Enter Title"/>
+                  </div>
+                </form>
+                
+                
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="AddRoleFormSubmitButton">
+                    Add Role
+                </button>
+
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                            Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <!-- Portfolio Grid Section -->
    
     <section id="portfolio" class="portfolio" style="margin-top:70px;">
@@ -78,7 +125,7 @@
             <div class="row">
 
                 <div class="col-lg-offset-1 col-lg-11">
-            <button class="btn btn-md btn-success">Add Role</button>
+            <button class="btn btn-md btn-success" id="AddRoleButton">Add Role</button>
                     <br><br/>
                     
                     <table class="table table-bordered">

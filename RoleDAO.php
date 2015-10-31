@@ -141,7 +141,7 @@
 			try
 			{
 				$c=DatabaseConnection::getConnection();
-				$ps=$c->prepare("select * from tbl_role where name=?");
+				$rs=$c->query("select * from tbl_role where name='".$roleName."'");
 				$ps->bindParam(1,$roleName);
 				$rs=$ps->execute();
 				$role=null;
@@ -231,9 +231,7 @@
 			try
 			{
 				$c=DatabaseConnection::getConnection();
-				$ps=$c->prepare("select * from tbl_role where name=?");
-				$ps->bindParam(1,$roleName);
-				$rs=$ps->execute();
+				$rs=$c->query("select * from tbl_role where name= '".$roleName."'");
 				$x=0;
 				foreach ($rs as $row) {
 					$x++;

@@ -2,6 +2,40 @@ $(document).ready(function(){
 	loadRoles();
 });
 
+$("#AddRoleButton").on("click",function(){
+	$("#AddRoleModal").modal("show");
+});
+
+
+$("#AddRoleFormSubmitButton").on("click",function(){
+	$("#AddRoleModal").modal("hide");	
+	var name=$("#RoleName").val();
+	if(name.trim().length==0)
+	{
+
+  	$("#notificationMessage").html("Please provide some input");
+  	$("#notificationModal").modal('show');		
+	return;
+	}
+var urlFormed="AddRole.php?name="+encodeURI(name);
+$.ajax({
+
+  url: urlFormed,
+  error : function (jqXHR,textStatus,errorThrown )
+  {
+  	$("#notificationMessage").html(errorThrown);
+  	$("#notificationModal").modal('show');
+  },success : function(data,textStatus,jqXHR)
+  {
+  	$("#notificationMessage").html(data);
+  	$("#notificationModal").modal('show');
+  	$("#rolesTableBody").html("");
+  	loadRoles();
+  }
+});
+
+});
+
 $(document).on("click",".deleteButton",function(){
    
 var code=$(this).attr("id").replace("deleteButtonCode","");
@@ -21,7 +55,7 @@ $.ajax({
   	$("#rolesTableBody").html("");
   	loadRoles();
   }
-})});
+});});
 
 function insertRows(objects)
 {
