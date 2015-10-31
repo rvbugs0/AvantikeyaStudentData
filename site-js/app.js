@@ -1,3 +1,5 @@
+var objects="";
+
 $(document).ready(function(){
 	loadRoles();
 });
@@ -6,6 +8,54 @@ $("#AddRoleButton").on("click",function(){
 	$("#AddRoleModal").modal("show");
 });
 
+$(document).on("click",".editButton",function(){
+	code=$(this).attr("id").replace("editButtonCode","");
+	//alert(code);
+	for(i=0;i<objects.length;i++)
+	{
+		if(objects[i].code==code)
+		{
+			name=objects[i].name;
+			//alert(name);
+			break;
+		}
+	}
+	$("#EditRoleName").val(name);	
+	$("#EditRoleCode").val(code);
+	$("#EditRoleModal").modal("show");
+});
+
+
+$("#EditRoleFormSubmitButton").on("click",function(){
+	$("#EditRoleModal").modal("hide");	
+	
+	var name=$("#EditRoleName").val();
+	if(name.trim().length==0)
+	{
+  	$("#notificationMessage").html("Please provide some input");
+  	$("#notificationModal").modal('show');		
+	return;
+	}
+	var code=$("#EditRoleCode").val();
+	
+var urlFormed="UpdateRole.php?name="+encodeURI(name)+"&code="+code;
+$.ajax({
+
+  url: urlFormed,
+  error : function (jqXHR,textStatus,errorThrown )
+  {
+  	$("#notificationMessage").html(errorThrown);
+  	$("#notificationModal").modal('show');
+  },success : function(data,textStatus,jqXHR)
+  {
+  	$("#notificationMessage").html(data);
+  	$("#notificationModal").modal('show');
+  	$("#rolesTableBody").html("");
+  	loadRoles();
+  }
+});
+
+});
 
 $("#AddRoleFormSubmitButton").on("click",function(){
 	$("#AddRoleModal").modal("hide");	
@@ -123,6 +173,7 @@ $.ajax(
   {
   
   	roles=$.parseJSON(data);
+  	objects=roles;
   	insertRows(roles);
   } 
 	});

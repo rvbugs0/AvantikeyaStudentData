@@ -113,6 +113,58 @@
 </div>
 
 
+
+<div class="modal fade" id="EditRoleModal" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Edit Role
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+                <form role="form">
+                  <div class="form-group">
+                    <label for="EditRoleName">Title</label>
+                      <input type="text" class="form-control"
+                      id="EditRoleName" placeholder="Enter Title"/>
+                  </div>
+                 <div class="form-group">
+                      <input type="hidden" class="form-control"
+                      id="EditRoleCode" />
+                  </div>
+               
+                </form>
+                
+                
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="EditRoleFormSubmitButton">
+                    Update Role
+                </button>
+
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                            Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <!-- Portfolio Grid Section -->
    
     <section id="portfolio" class="portfolio" style="margin-top:70px;">

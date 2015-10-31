@@ -90,7 +90,7 @@
 				{
 				throw new  DAOException("RoleDAO : update : Role with same name already exists ".$role->name);
 				}
-				$ps=$c->prepare("update tbl_role set name=? where code = ?");
+				$ps=$c->prepare("update tbl_role set name = ? where code = ?");
 				$ps->bindParam(1,$role->name);
 				$ps->bindParam(2,$role->code);
 				$ps->execute();
@@ -141,9 +141,7 @@
 			try
 			{
 				$c=DatabaseConnection::getConnection();
-				$rs=$c->query("select * from tbl_role where name='".$roleName."'");
-				$ps->bindParam(1,$roleName);
-				$rs=$ps->execute();
+				$rs=$c->query("select * from tbl_role where name ='".$roleName."'");
 				$role=null;
 				$x=0;
 				foreach ($rs as $row) {
@@ -206,7 +204,7 @@
 			try
 			{
 				$c=DatabaseConnection::getConnection();
-				$rs=$c->query("select * from tbl_role where code =".$code);
+				$rs=$c->query("select * from tbl_role where code = ".$code);
 				$x=0;
 				foreach ($rs as $row) {
 					$x++;
@@ -215,9 +213,9 @@
 				$c=null;
 				if($x>0)
 				{
-					return TRUE;
+					return true;
 				}
-				return FALSE;
+				return false;
 			}
 			catch(Exception $exception)
 			{
