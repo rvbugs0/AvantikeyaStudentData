@@ -4,7 +4,7 @@ $name=$_GET["name"];
 
 try{
     $role=new Role();
-    $role->name=$name;
+    $role->name=trim($name);
 	$roleDAO=new RoleDAO();
     $roles=$roleDAO->add($role);                    
     echo "Added";

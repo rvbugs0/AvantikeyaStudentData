@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" ng-app="magnoApp" ng-controller="SiteDataController">
+<html lang="en" >
 
 <head >
 
@@ -59,7 +59,7 @@
        <a class="btn btn-warning">Manage Members</a>
 
        <br><br>
-       <a class="btn btn-success">Manage Departments</a>
+       <a class="btn btn-success" href="ManageDepartments.php">Manage Departments</a>
          </div>
     </section>
 

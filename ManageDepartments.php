@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Avantikeya- Manage Roles</title>
+    <title>Avantikeya- Manage Departments</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
   
@@ -67,7 +67,7 @@
 
 
 
-<div class="modal fade" id="AddRoleModal" tabindex="-1" role="dialog" 
+<div class="modal fade" id="AddDepartmentModal" tabindex="-1" role="dialog" 
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -79,7 +79,7 @@
                        <span class="sr-only">Close</span>
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    Add Role
+                    Add Department
                 </h4>
             </div>
             
@@ -88,9 +88,9 @@
                 
                 <form role="form">
                   <div class="form-group">
-                    <label for="RoleName">Title</label>
+                    <label for="DepartmentName">Title</label>
                       <input type="text" class="form-control"
-                      id="RoleName" placeholder="Enter Title"/>
+                      id="DepartmentName" placeholder="Enter Title"/>
                   </div>
                 </form>
                 
@@ -99,8 +99,8 @@
             
             <!-- Modal Footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="AddRoleFormSubmitButton">
-                    Add Role
+                <button type="button" class="btn btn-primary" id="AddDepartmentFormSubmitButton">
+                    Add Department
                 </button>
 
                 <button type="button" class="btn btn-default"
@@ -114,7 +114,7 @@
 
 
 
-<div class="modal fade" id="EditRoleModal" tabindex="-1" role="dialog" 
+<div class="modal fade" id="EditDepartmentModal" tabindex="-1" role="dialog" 
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -126,7 +126,7 @@
                        <span class="sr-only">Close</span>
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    Edit Role
+                    Edit Department
                 </h4>
             </div>
             
@@ -135,13 +135,13 @@
                 
                 <form role="form">
                   <div class="form-group">
-                    <label for="EditRoleName">Title</label>
+                    <label for="EditDepartmentName">Title</label>
                       <input type="text" class="form-control"
-                      id="EditRoleName" placeholder="Enter Title"/>
+                      id="EditDepartmentName" placeholder="Enter Title"/>
                   </div>
                  <div class="form-group">
                       <input type="hidden" class="form-control"
-                      id="EditRoleCode" />
+                      id="EditDepartmentCode" />
                   </div>
                
                 </form>
@@ -151,8 +151,8 @@
             
             <!-- Modal Footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="EditRoleFormSubmitButton">
-                    Update Role
+                <button type="button" class="btn btn-primary" id="EditDepartmentFormSubmitButton">
+                    Update Department
                 </button>
 
                 <button type="button" class="btn btn-default"
@@ -171,24 +171,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Manage Roles</h2>
+                    <h2>Manage Departments</h2>
                    </div>
             </div>
             <div class="row">
 
                 <div class="col-lg-offset-1 col-lg-11">
-            <button class="btn btn-md btn-success" id="AddRoleButton">Add Role</button>
+            <button class="btn btn-md btn-success" id="AddDepartmentButton">Add Department</button>
                     <br><br/>
                     
                     <table class="table table-bordered">
                 <thead>
                     <tr>
                     <td>S.No.</td>
-                    <td>Role</td>
+                    <td>Department Name</td>
                     <td>Options</td>    
                     </tr>
                 </thead>
-                <tbody id="rolesTableBody">
+                <tbody id="departmentsTableBody">
 
                 </tbody>
                 </table>
@@ -209,7 +209,7 @@
       
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
- <script src="site-js/manage-roles.js" type="text/javascript"></script>
+ <script src="site-js/manage-departments.js" type="text/javascript"></script>
  
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

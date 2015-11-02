@@ -1,11 +1,11 @@
 var objects="";
 
 $(document).ready(function(){
-	loadRoles();
+	loadDepartments();
 });
 
-$("#AddRoleButton").on("click",function(){
-	$("#AddRoleModal").modal("show");
+$("#AddDepartmentButton").on("click",function(){
+	$("#AddDepartmentModal").modal("show");
 });
 
 $(document).on("click",".editButton",function(){
@@ -20,25 +20,25 @@ $(document).on("click",".editButton",function(){
 			break;
 		}
 	}
-	$("#EditRoleName").val(name);	
-	$("#EditRoleCode").val(code);
-	$("#EditRoleModal").modal("show");
+	$("#EditDepartmentName").val(name);	
+	$("#EditDepartmentCode").val(code);
+	$("#EditDepartmentModal").modal("show");
 });
 
 
-$("#EditRoleFormSubmitButton").on("click",function(){
-	$("#EditRoleModal").modal("hide");	
+$("#EditDepartmentFormSubmitButton").on("click",function(){
+	$("#EditDepartmentModal").modal("hide");	
 	
-	var name=$("#EditRoleName").val();
+	var name=$("#EditDepartmentName").val();
 	if(name.trim().length==0)
 	{
   	$("#notificationMessage").html("Please provide some input");
   	$("#notificationModal").modal('show');		
 	return;
 	}
-	var code=$("#EditRoleCode").val();
+	var code=$("#EditDepartmentCode").val();
 	
-var urlFormed="UpdateRole.php?name="+encodeURI(name)+"&code="+code;
+var urlFormed="UpdateDepartment.php?name="+encodeURI(name)+"&code="+code;
 $.ajax({
 
   url: urlFormed,
@@ -50,16 +50,16 @@ $.ajax({
   {
   	$("#notificationMessage").html(data);
   	$("#notificationModal").modal('show');
-  	$("#rolesTableBody").html("");
-  	loadRoles();
+  	$("#departmentsTableBody").html("");
+  	loadDepartments();
   }
 });
 
 });
 
-$("#AddRoleFormSubmitButton").on("click",function(){
-	$("#AddRoleModal").modal("hide");	
-	var name=$("#RoleName").val();
+$("#AddDepartmentFormSubmitButton").on("click",function(){
+	$("#AddDepartmentModal").modal("hide");	
+	var name=$("#DepartmentName").val();
 	if(name.trim().length==0)
 	{
 
@@ -67,7 +67,7 @@ $("#AddRoleFormSubmitButton").on("click",function(){
   	$("#notificationModal").modal('show');		
 	return;
 	}
-var urlFormed="AddRole.php?name="+encodeURI(name);
+var urlFormed="AddDepartment.php?name="+encodeURI(name);
 $.ajax({
 
   url: urlFormed,
@@ -79,18 +79,18 @@ $.ajax({
   {
   	$("#notificationMessage").html(data);
   	$("#notificationModal").modal('show');
-  	$("#rolesTableBody").html("");
-  	loadRoles();
+  	$("#departmentsTableBody").html("");
+  	loadDepartments();
   }
 });
 
 });
+
+
 
 $(document).on("click",".deleteButton",function(){
-   
 var code=$(this).attr("id").replace("deleteButtonCode","");
-
-var urlFormed="DeleteRole.php?code="+code;
+var urlFormed="DeleteDepartment.php?code="+code;
 $.ajax({
 
   url: urlFormed,
@@ -102,15 +102,19 @@ $.ajax({
   {
   	$("#notificationMessage").html(data);
   	$("#notificationModal").modal('show');
-  	$("#rolesTableBody").html("");
-  	loadRoles();
+  	$("#departmentsTableBody").html("");
+  	loadDepartments();
   }
-});});
+});
+});
+
+
+
 
 function insertRows(objects)
 {
 
-var tableRef = document.getElementById('rolesTableBody');
+var tableRef = document.getElementById('departmentsTableBody');
 
 var x=0;
 while(x<objects.length)
@@ -147,23 +151,17 @@ newCell.appendChild(a);
 
 x++;
 }
-
-
-/*           
-str+= "<a class='btn btn-warning btn-sm deleteButton' code='"+object.code+"'>Delete</a>&nbsp;";
-str+= "<a class='btn btn-warning btn-sm editButton' code='"+object.code+"'>Edit</a>";
-*/
 }
 
 
 
-function loadRoles()
+function loadDepartments()
 {
-var roles;
+var departments;
 
 $.ajax(
 	{
-		url:"GetRoles.php",
+		url:"GetDepartments.php",
 		  error : function (jqXHR,textStatus,errorThrown )
   {
    	$("#notificationMessage").html(errorThrown);
@@ -172,15 +170,11 @@ $.ajax(
   	success : function(data,textStatus,jqXHR)
   {
   
-  	roles=$.parseJSON(data);
-  	objects=roles;
-  	insertRows(roles);
+  	departments=$.parseJSON(data);
+  	objects=departments;
+  	insertRows(departments);
   } 
 	});
-/*
-	
-*/
-
 
 }
 

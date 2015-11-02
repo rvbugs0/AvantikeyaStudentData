@@ -9,8 +9,7 @@ class DepartmentDAO
 		$c=DatabaseConnection::getConnection();
 		try
 		{
-			$ps=$c->prepare("select * from tbl_department");
-			$rs=$ps->execute();
+			$rs=$c->query("select * from tbl_department");
 			$x=0;
 			$departments=[];
 			foreach ($rs as $row ) 
@@ -114,15 +113,18 @@ class DepartmentDAO
 			$c=DatabaseConnection::getConnection();
 			if(self::exists($code)==false)
 			{
-			throw new  DAOException("DepartmentDAO : delete : Invalid code ".code);				
+			throw new  DAOException("DepartmentDAO : delete : Invalid code ".$code);				
 			}
 			$department=self::get($code);
+			/*
 			if(new MemberDAO().getCountByDepartment($department->name))
 			{
 			throw new  DAOException("DepartmentDAO : delete : Department used against some member(s) ".$department->name);	
 			}
+			*/
 			$ps=$c->prepare("delete from tbl_department  where code = ?");
 			$ps->bindParam(1,$department->code);
+			$ps->execute();
 			$ps=null;
 			$c=null;
 		}
@@ -174,9 +176,7 @@ class DepartmentDAO
 		try
 		{
 			$c=DatabaseConnection::getConnection();
-			$ps=$c->prepare("select * from tbl_department where code=?");
-			$ps->bindParam(1,$code);
-			$rs=$ps->execute();
+			$rs=$c->query("select * from tbl_department where code = ".$code);
 			$department=null;
 			$x=0;
 			foreach ($rs as $row) {
@@ -209,9 +209,7 @@ class DepartmentDAO
 		try
 		{
 			$c=DatabaseConnection::getConnection();
-			$ps=$c->prepare("select * from tbl_department where code=?");
-			$ps->bindParam(1,$code);
-			$rs=$ps->execute();
+			$rs=$c->query("select * from tbl_department where code= ".$code);
 			$x=0;
 			foreach ($rs as $row) {
 				$x++;

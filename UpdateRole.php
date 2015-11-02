@@ -4,7 +4,7 @@ $name=$_GET["name"];
 $code=$_GET["code"];
 try{
     $role=new Role();
-    $role->name=$name;
+    $role->name=trim($name);
     $role->code=$code;
 	$roleDAO=new RoleDAO();
     $roles=$roleDAO->update($role);                    
@@ -13,6 +13,4 @@ try{
     {
     echo $exception->getMessage();
     }
-
-
 ?>
