@@ -30,6 +30,11 @@
     .deleteButton{
         margin-right:5px;
     }
+
+    .form-group
+    {
+        display: inline-block;
+    }
 </style>
 
 </head>
@@ -88,11 +93,95 @@
                 
                 <form role="form">
                   <div class="form-group">
-                    <label for="MemberName">Title</label>
+                    <label for="AddMemberName">Name</label>
                       <input type="text" class="form-control"
-                      id="MemberName" placeholder="Enter Title"/>
+                      id="AddMemberName" placeholder="Enter Title"/>
                   </div>
-                </form>
+                  <div class="form-group">
+                    <label for="AddMemberEmail">Email</label>
+                      <input type="email" class="form-control"
+                      id="AddMemberEmail" placeholder="Enter Title"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="AddMemberPhone">Phone Number</label>
+                      <input type="text" class="form-control"
+                      id="AddMemberPhone" placeholder="Enter Title"/>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="AddMemberDOB">Date Of Birth</label>
+                      <input type="date" class="form-control"
+                      id="AddMemberDOB" />
+                  </div>
+
+                 <div class="form-group">
+                    <label for="AddMemberAddress">Address</label>
+                      <input type="text" class="form-control"
+                      id="AddMemberAddress" />
+                  </div>
+                 <div class="form-group">
+                    <label for="AddMemberInstitution">Institution</label>
+                      <input type="text" class="form-control"
+                      id="AddMemberInstitution" />
+                  </div>
+
+                    <br/>                  
+                  <div class="form-group">
+                    <label for="AddMemberRole">Role : </label>
+                      <select id="AddMemberRole" >
+                    <?php
+                    require_once("RoleDAO.php");
+                    $roleDAO=new RoleDAO();
+                    try
+                    {
+                    $roles=$roleDAO->getAll();                        
+                    foreach ($roles as $role) {
+                        echo '<option value="'.$role->code.'">'.$role->name.'</option>';
+                    }
+                    }
+                    catch(Exception $exception)
+                    {
+                        echo $exception->getMessage();
+                    }
+
+                    ?>
+                      </select>
+                  </div>
+                    
+
+                  <div class="form-group">
+                    <label for="AddMemberGender">Gender</label>
+                    <select id="AddMemberGender">
+                    <option value="M">Male </option>
+                    <option value="F">Female </option>
+                    </select>
+                    </div>
+                  
+
+                    <br/>
+                    <div class="form-group">
+                    <label for="AddMemberDepartment">Department : </label>
+                      <select id="AddMemberDepartment" >
+                    <?php
+                    require_once("DepartmentDAO.php");
+                    $departmentDAO=new DepartmentDAO();
+                    try
+                    {
+                    $departments=$departmentDAO->getAll();                        
+                    foreach ($departments as $department) {
+                        echo '<option value="'.$department->code.'">'.$department->name.'</option>';
+                    }
+                    }
+                    catch(Exception $exception)
+                    {
+                        echo $exception->getMessage();
+                    }
+
+                    ?>
+                      </select>
+                  </div>
+
+                               </form>
                 
                 
             </div>
@@ -114,9 +203,9 @@
 
 
 
-<div class="modal fade" id="EditMemberModal" tabindex="-1" role="dialog" 
+<div class="modal fade " id="EditMemberModal" tabindex="-1" role="dialog" 
      aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
@@ -133,12 +222,97 @@
             <!-- Modal Body -->
             <div class="modal-body">
                 
+                    
                 <form role="form">
                   <div class="form-group">
-                    <label for="EditMemberName">Title</label>
+                    <label for="EditMemberName">Name</label>
                       <input type="text" class="form-control"
                       id="EditMemberName" placeholder="Enter Title"/>
                   </div>
+                  <div class="form-group">
+                    <label for="EditMemberEmail">Email</label>
+                      <input type="email" class="form-control"
+                      id="EditMemberEmail" placeholder="Enter Title"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="EditMemberPhone">Phone Number</label>
+                      <input type="text" class="form-control"
+                      id="EditMemberPhone" placeholder="Enter Title"/>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="EditMemberDOB">Date Of Birth</label>
+                      <input type="date" class="form-control"
+                      id="EditMemberDOB" />
+                  </div>
+
+                 <div class="form-group">
+                    <label for="EditMemberAddress">Address</label>
+                      <input type="text" class="form-control"
+                      id="EditMemberAddress" />
+                  </div>
+                 <div class="form-group">
+                    <label for="EditMemberInstitution">Institution</label>
+                      <input type="text" class="form-control"
+                      id="EditMemberInstitution" />
+                  </div>
+
+                    <br/>                  
+                  <div class="form-group">
+                    <label for="EditMemberRole">Role : </label>
+                      <select id="EditMemberRole" >
+                    <?php
+                    require_once("RoleDAO.php");
+                    $roleDAO=new RoleDAO();
+                    try
+                    {
+                    $roles=$roleDAO->getAll();                        
+                    foreach ($roles as $role) {
+                        echo '<option value="'.$role->code.'">'.$role->name.'</option>';
+                    }
+                    }
+                    catch(Exception $exception)
+                    {
+                        echo $exception->getMessage();
+                    }
+
+                    ?>
+                      </select>
+                  </div>
+                    
+
+                  <div class="form-group">
+                    <label for="EditMemberGender">Gender</label>
+                    <select id="EditMemberGender">
+                    <option value="M">Male </option>
+                    <option value="F">Female </option>
+                    </select>
+                    </div>
+                  
+
+                    <br/>
+                    <div class="form-group">
+                    <label for="EditMemberDepartment">Department : </label>
+                      <select id="EditMemberDepartment" >
+                    <?php
+                    require_once("DepartmentDAO.php");
+                    $departmentDAO=new DepartmentDAO();
+                    try
+                    {
+                    $departments=$departmentDAO->getAll();                        
+                    foreach ($departments as $department) {
+                        echo '<option value="'.$department->code.'">'.$department->name.'</option>';
+                    }
+                    }
+                    catch(Exception $exception)
+                    {
+                        echo $exception->getMessage();
+                    }
+
+                    ?>
+                      </select>
+                  </div>
+
                  <div class="form-group">
                       <input type="hidden" class="form-control"
                       id="EditMemberCode" />

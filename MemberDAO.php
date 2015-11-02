@@ -100,7 +100,7 @@ error_reporting(E_ALL);
 				$valid=true;
 				try
 				{
-					$tempMember=self::getByName($member->name);
+					$tempMember=self::getByEmail($member->email);
 					if($tempMember->code!=$member->code)
 					{
 						$valid=false;
@@ -113,18 +113,26 @@ error_reporting(E_ALL);
 				}
 				if($valid==false)
 				{
-				throw new  DAOException("MemberDAO : update : Member with same name already exists ".$member->name);
+				throw new  DAOException("MemberDAO : update : Member with same email already exists ".$member->email);
 				}
-				$ps=$c->prepare("update tbl_member set name=? where code = ?");
+				$ps=$c->prepare("update tbl_member set name= ?, email =?,phone =?,address =?,institution=?,department=?,role=?,dateOfBirth=?,gender=? where code = ?");
 				$ps->bindParam(1,$member->name);
-				$ps->bindParam(2,$member->code);
+				$ps->bindParam(2,$member->email);
+				$ps->bindParam(3,$member->phone);
+				$ps->bindParam(4,$member->address);
+				$ps->bindParam(5,$member->institution);
+				$ps->bindParam(6,$member->department);
+				$ps->bindParam(7,$member->role);
+				$ps->bindParam(8,$member->dateOfBirth);
+				$ps->bindParam(9,$member->gender);
+				$ps->bindParam(10,$member->code);
 				$ps->execute();
 				$ps=null;
 				$c=null;
 				}		
 			catch(Exception $exception)
 			{
-				throw new  DAOException("MemberDAO : add : ".$exception->getMessage());
+				throw new  DAOException("MemberDAO : update : ".$exception->getMessage());
 				
 			}
 		}
@@ -160,9 +168,7 @@ error_reporting(E_ALL);
 			try
 			{
 				$c=DatabaseConnection::getConnection();
-				$ps=$c->prepare("select * from tbl_member where email=?");
-				$ps->bindParam(1,$memberEmail);
-				$rs=$ps->execute();
+				$rs=$c->query("select * from tbl_member where email ='".$memberEmail."'");
 				$member=null;
 				$x=0;
 				foreach ($rs as $row) {
@@ -203,9 +209,7 @@ error_reporting(E_ALL);
 			try
 			{
 				$c=DatabaseConnection::getConnection();
-				$ps=$c->prepare("select * from tbl_member where code=?");
-				$ps->bindParam(1,$code);
-				$rs=$ps->execute();
+				$rs=$c->query("select * from tbl_member where code = ".$code);
 				$member=null;
 				$x=0;
 				foreach ($rs as $row) {
@@ -219,7 +223,7 @@ error_reporting(E_ALL);
 				$member->gender= $row["gender"];
 				$member->address = $row["address"];
 				$member->institution=$row["institution"];	
-						$member->department=$row["department"];					
+				$member->department=$row["department"];					
 				$x++;
 				}
 				if($x==0)
@@ -267,14 +271,12 @@ error_reporting(E_ALL);
 			}
 		}	
 
-		public function existsByemail($memberEmail)
+		public function existsByEmail($memberEmail)
 		{
 			try
 			{
 				$c=DatabaseConnection::getConnection();
-				$ps=$c->prepare("select * from tbl_member where email=?");
-				$ps->bindParam(1,$memberEmail);
-				$rs=$ps->execute();
+				$rs=$c->query("select * from tbl_member where email='".$memberEmail."'");
 				$x=0;
 				foreach ($rs as $row) {
 					$x++;

@@ -19,6 +19,7 @@ $(document).on("click",".editButton",function(){
 			//alert(name);
 			break;
 		}
+
 	}
 	$("#EditMemberName").val(name);	
 	$("#EditMemberCode").val(code);
@@ -59,15 +60,81 @@ $.ajax({
 
 $("#AddMemberFormSubmitButton").on("click",function(){
 	$("#AddMemberModal").modal("hide");	
-	var name=$("#MemberName").val();
+	
+  var name=$("#AddMemberName").val();
 	if(name.trim().length==0)
 	{
 
-  	$("#notificationMessage").html("Please provide some input");
+  	$("#notificationMessage").html("Please provide a name");
   	$("#notificationModal").modal('show');		
 	return;
 	}
-var urlFormed="AddMember.php?name="+encodeURI(name);
+var email=$("#AddMemberEmail").val();
+  if(email.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please provide an Email");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+  var phone=$("#AddMemberPhone").val();
+  if(phone.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please provide a phone number");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+  var dob=$("#AddMemberDOB").val();
+  if(dob.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please provide Birth Date");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+
+  var address=$("#AddMemberAddress").val();
+  if(address.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please provide an address");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+var role=$("#AddMemberRole").val();
+  if(role.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please Select a role");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+var gender=$("#AddMemberGender").val();
+  if(gender.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please select a gender");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+  var department=$("#AddMemberDepartment").val();
+  if(department.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please select a department");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+    var institution=$("#AddMemberInstitution").val();
+  if(institution.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please provide institution name");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+var urlFormed="AddMember.php?name="+encodeURI(name)+"&institution="+encodeURI(institution)+"&email="+encodeURI(email)+"&phone="+encodeURI(phone)+"&dob="+encodeURI(dob)+"&address="+encodeURI(address)+"&role="+encodeURI(role)+"&gender="+encodeURI(gender)+"&department="+encodeURI(department);
 $.ajax({
 
   url: urlFormed,
