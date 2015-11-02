@@ -21,6 +21,7 @@ try{
         $roleCode= trim($member->role);
         $dateOfBirth= trim($member->dateOfBirth);
         $gender = trim($member->gender);
+        $departmentCode = trim($member->department);
         $departmentName = trim($member->departmentName);
         $address = trim($member->address);
         $email = trim($member->email);
@@ -28,7 +29,7 @@ try{
         $institution=$member->institution;
     echo '{"code":'.$code.',"name":"'.$name.'","roleName":"'.$roleName.'","dateOfBirth":"'.$dateOfBirth.'",
     "gender":"'.$gender.'","departmentName":"'.$departmentName.'","address":"'.$address.'","email":"'.$email.'",
-    "phone":"'.$phone.'","institution":"'.$institution.'"}';
+    "phone":"'.$phone.'","institution":"'.$institution.'","roleCode":'.$roleCode.',"departmentCode":'.$departmentCode.'}';
     $x++;
     }
     echo "]";

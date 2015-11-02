@@ -94,7 +94,7 @@ error_reporting(E_ALL);
 				$c=DatabaseConnection::getConnection();
 				if(self::exists($member->code)==false)
 				{
-				throw new  DAOException("MemberDAO : update : Invalid Member Code ".$member->code);				
+				throw new  DAOException("MemberDAO : update : Invalid Member Code ".$member->code);			
 				}
 				$tempMember=null;
 				$valid=true;
@@ -168,14 +168,15 @@ error_reporting(E_ALL);
 			try
 			{
 				$c=DatabaseConnection::getConnection();
-				$rs=$c->query("select * from tbl_member where email ='".$memberEmail."'");
+				$rs=$c->query("select * from tbl_member where email = '".$memberEmail."'");
 				$member=null;
 				$x=0;
+				$member=null;
 				foreach ($rs as $row) {
 				$member=new Member();
 				$member->code = $row["code"];
 				$member->name = $row["name"];
-				$member->$role= $row["role"];
+				$member->role= $row["role"];
 				$member->email = $row["email"];
 				$member->phone = $row["phone"];
 				$member->dateOfBirth = $row["dateOfBirth"];

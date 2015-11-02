@@ -95,17 +95,17 @@
                   <div class="form-group">
                     <label for="AddMemberName">Name</label>
                       <input type="text" class="form-control"
-                      id="AddMemberName" placeholder="Enter Title"/>
+                      id="AddMemberName" />
                   </div>
                   <div class="form-group">
                     <label for="AddMemberEmail">Email</label>
                       <input type="email" class="form-control"
-                      id="AddMemberEmail" placeholder="Enter Title"/>
+                      id="AddMemberEmail" />
                   </div>
                   <div class="form-group">
                     <label for="AddMemberPhone">Phone Number</label>
                       <input type="text" class="form-control"
-                      id="AddMemberPhone" placeholder="Enter Title"/>
+                      id="AddMemberPhone" />
                   </div>
 
                  <div class="form-group">

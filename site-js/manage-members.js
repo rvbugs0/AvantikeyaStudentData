@@ -16,11 +16,29 @@ $(document).on("click",".editButton",function(){
 		if(objects[i].code==code)
 		{
 			name=objects[i].name;
-			//alert(name);
+      institution=objects[i].institution;
+			address=objects[i].address;
+      gender=objects[i].gender;
+      phone=objects[i].phone;
+      email=objects[i].email;
+      dob= objects[i].dateOfBirth;
+      role=objects[i].roleCode;
+      department=objects[i].departmentCode;
+
+
+      //alert(name);
 			break;
 		}
 
 	}
+  $("#EditMemberDepartment").val(department);
+  $("#EditMemberRole").val(role);
+  $("#EditMemberDOB").val(dob); 
+  $("#EditMemberEmail").val(email); 
+  $("#EditMemberPhone").val(phone); 
+  $("#EditMemberGender").val(gender); 
+  $("#EditMemberAddress").val(address); 
+  $("#EditMemberInstitution").val(institution); 
 	$("#EditMemberName").val(name);	
 	$("#EditMemberCode").val(code);
 	$("#EditMemberModal").modal("show");
@@ -38,8 +56,74 @@ $("#EditMemberFormSubmitButton").on("click",function(){
 	return;
 	}
 	var code=$("#EditMemberCode").val();
-	
-var urlFormed="UpdateMember.php?name="+encodeURI(name)+"&code="+code;
+	var email=$("#EditMemberEmail").val();
+  if(email.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please provide an Email");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+  var phone=$("#EditMemberPhone").val();
+  if(phone.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please provide a phone number");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+  var dob=$("#EditMemberDOB").val();
+  if(dob.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please provide Birth Date");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+
+  var address=$("#EditMemberAddress").val();
+  if(address.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please provide an address");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+var role=$("#EditMemberRole").val();
+  if(role.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please Select a role");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+var gender=$("#EditMemberGender").val();
+  if(gender.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please select a gender");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+  var department=$("#EditMemberDepartment").val();
+  if(department.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please select a department");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+    var institution=$("#EditMemberInstitution").val();
+  if(institution.trim().length==0)
+  {
+
+    $("#notificationMessage").html("Please provide institution name");
+    $("#notificationModal").modal('show');    
+  return;
+  }
+
+
+var urlFormed="UpdateMember.php?name="+encodeURI(name)+"&institution="+encodeURI(institution)+"&email="+encodeURI(email)+"&phone="+encodeURI(phone)+"&dob="+encodeURI(dob)+"&address="+encodeURI(address)+"&role="+encodeURI(role)+"&gender="+encodeURI(gender)+"&department="+encodeURI(department)+"&code="+encodeURI(code);
 $.ajax({
 
   url: urlFormed,
