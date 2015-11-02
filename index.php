@@ -56,7 +56,7 @@
             </div>
        <a class="btn btn-danger" href="ManageRoles.php">Manage Roles</a>
        <br><br>
-       <a class="btn btn-warning">Manage Members</a>
+       <a class="btn btn-warning" href="ManageMembers.php">Manage Members</a>
 
        <br><br>
        <a class="btn btn-success" href="ManageDepartments.php">Manage Departments</a>

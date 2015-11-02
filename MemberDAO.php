@@ -1,7 +1,13 @@
+
 	<?php
+	/*
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+	*/
 	require_once("DatabaseConnection.php");
 	require_once("DAOException.php");
-	require_once("MemberDAO.php");
+	require_once("Member.php");
 	class MemberDAO 
 	{
 
@@ -10,23 +16,25 @@
 			$c=DatabaseConnection::getConnection();
 			try
 			{
-				$ps=$c->prepare("select * from tbl_member");
-				$rs=$ps->execute();
+				$sql="select phone,role as role_code,department as department_code,email,institution,address,gender, dateOfBirth ,tbl_member.code as code ,tbl_member.name as name , tbl_role.name as role_name , tbl_department.name as department_name from tbl_member inner join tbl_department  on tbl_department.code = tbl_member.department inner join tbl_role  on tbl_role.code = tbl_member.role ;";
+				$rs=$c->query($sql);
 				$x=0;
 				$members=[];
 				foreach ($rs as $row ) 
 				{
 					$member=new Member();
-					$member->code = $row["code"];
-					$member->name = $row["name"];
-					$member->$role= $row["role"];
-					$member->email = $row["email"];
-					$member->phone = $row["phone"];
-					$member->dateOfBirth = $row["dateOfBirth"];
-					$member->gender= $row["gender"];
-					$member->address = $row["address"];
-					$member->institution=$row["institution"];	
-					$member->department=$row["department"];	
+					$member->code = trim($row["code"]);
+					$member->name = trim($row["name"]);
+					$member->role= trim($row["role_code"]);
+					$member->roleName= trim($row["role_name"]);
+					$member->email = trim($row["email"]);
+					$member->phone = trim($row["phone"]);
+					$member->dateOfBirth = trim($row["dateOfBirth"]);
+					$member->gender= trim($row["gender"]);
+					$member->address = trim($row["address"]);
+					$member->institution= trim($row["institution"]);	
+					$member->department= trim($row["department_code"]);
+					$member->departmentName= trim($row["department_name"]);	
 					$members[$x]=$member;
 					$x++;
 				}
@@ -130,10 +138,11 @@
 				$c=DatabaseConnection::getConnection();
 				if(self::exists($code)==false)
 				{
-				throw new  DAOException("MemberDAO : delete : Invalid code ".code);				
+				throw new  DAOException("MemberDAO : delete : Invalid code ".$code);				
 				}
 				$ps=$c->prepare("delete from tbl_member  where code = ?");
-				$ps->bindParam(1,$member->code);
+				$ps->bindParam(1,$code);
+				$ps->execute();
 				$ps=null;
 				$c=null;
 			}
@@ -237,9 +246,7 @@
 			try
 			{
 				$c=DatabaseConnection::getConnection();
-				$ps=$c->prepare("select * from tbl_member where code=?");
-				$ps->bindParam(1,$code);
-				$rs=$ps->execute();
+				$rs=$c->query("select * from tbl_member where code = ".$code);
 				$x=0;
 				foreach ($rs as $row) {
 					$x++;
