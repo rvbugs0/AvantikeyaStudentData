@@ -2,6 +2,7 @@
 require_once("DatabaseConnection.php");
 require_once("DAOException.php");
 require_once("Department.php");
+require_once("MemberDAO.php");
 class DepartmentDAO 
 {
 	public function getAll()
@@ -115,15 +116,13 @@ class DepartmentDAO
 			{
 			throw new  DAOException("DepartmentDAO : delete : Invalid code ".$code);				
 			}
-			$department=self::get($code);
 			$memberDAO=new MemberDAO();
-			if($memberDAO->getCountByDepartment($department->name))
+			if($memberDAO->getCountByDepartment($code)>0)
 			{
-			throw new  DAOException("DepartmentDAO : delete : Department used against some member(s) ".$department->name);	
+			throw new  DAOException("DepartmentDAO : delete : Department used against some member(s) ".$code);	
 			}
-			
 			$ps=$c->prepare("delete from tbl_department  where code = ?");
-			$ps->bindParam(1,$department->code);
+			$ps->bindParam(1,$code);
 			$ps->execute();
 			$ps=null;
 			$c=null;

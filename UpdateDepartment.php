@@ -1,6 +1,6 @@
 <?php
 require_once("DepartmentDAO.php");
-$name=$_GET["name"];
+$name=str_replace('"',"'",$_GET["name"]);
 $code=$_GET["code"];
 try{
     $department=new Department();

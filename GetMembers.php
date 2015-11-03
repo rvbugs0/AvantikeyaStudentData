@@ -1,12 +1,12 @@
 <?php
 require_once("MemberDAO.php");
-
+echo "[";
 try{
 	$memberDAO=new MemberDAO();
 
     $members=$memberDAO->getAll();                    
 
-    echo "[";
+  
     $x=0;
     foreach ($members as $member ) 
     {
@@ -32,12 +32,12 @@ try{
     "phone":"'.$phone.'","institution":"'.$institution.'","roleCode":'.$roleCode.',"departmentCode":'.$departmentCode.'}';
     $x++;
     }
-    echo "]";
+    
    }
    catch(Exception $exception)
     {
-    echo $exception->getMessage();
+//    echo $exception->getMessage();
     }
-
+echo "]";
 
 ?>

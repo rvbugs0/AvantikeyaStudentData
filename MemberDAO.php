@@ -10,6 +10,25 @@ error_reporting(E_ALL);
 	require_once("Member.php");
 	class MemberDAO 
 	{
+		public function getCountByDepartment($code)
+		{
+			try
+			{
+				$c=DatabaseConnection::getConnection();
+				$rs=$c->query("select count(*) as cnt from tbl_member  where department = ".$code);
+				foreach ($rs as $row ) {
+				$count=$row["cnt"];
+				}
+				$c=null;
+				return $count;
+
+			}
+			catch(Exception $exception)
+			{
+				throw new  DAOException("MemberDAO : delete : ".$exception->getMessage());
+				
+			}
+		}
 
 		public function getAll()
 		{

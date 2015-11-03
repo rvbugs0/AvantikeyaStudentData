@@ -170,7 +170,7 @@ $.ajax(
   	success : function(data,textStatus,jqXHR)
   {
   
-  	departments=$.parseJSON(data);
+  	departments=JSON.parse(data);
   	objects=departments;
   	insertRows(departments);
   } 

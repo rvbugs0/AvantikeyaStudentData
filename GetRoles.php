@@ -1,10 +1,10 @@
 <?php
 require_once("RoleDAO.php");
-
+    echo "[";
 try{
 	$roleDAO=new RoleDAO();
     $roles=$roleDAO->getAll();                    
-    echo "[";
+
     $x=0;
     foreach ($roles as $role ) 
     {
@@ -17,11 +17,11 @@ try{
     echo '{"code":'.$code.',"name":"'.$name.'"}';
     $x++;
     }
-    echo "]";
+
    }catch(Exception $exception)
     {
-    echo $exception->getMessage();
+//    echo $exception->getMessage();
     }
-
+    echo "]";
 
 ?>

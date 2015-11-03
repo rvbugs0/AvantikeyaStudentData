@@ -355,7 +355,7 @@ $.ajax(
   	success : function(data,textStatus,jqXHR)
   {
   
-  	members=$.parseJSON(data);
+  	members=JSON.parse(data);
   	objects=members;
   	insertRows(members);
   } 

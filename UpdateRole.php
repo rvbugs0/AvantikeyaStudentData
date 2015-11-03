@@ -1,6 +1,6 @@
 <?php
 require_once("RoleDAO.php");
-$name=$_GET["name"];
+$name=str_replace('"',"'",trim($_GET["name"]));
 $code=$_GET["code"];
 try{
     $role=new Role();

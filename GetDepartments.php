@@ -1,10 +1,10 @@
 <?php
 require_once("DepartmentDAO.php");
-
+    echo "[";
 try{
 	$departmentDAO=new DepartmentDAO();
     $departments=$departmentDAO->getAll();                    
-    echo "[";
+
     $x=0;
     foreach ($departments as $department ) 
     {
@@ -17,11 +17,11 @@ try{
     echo '{"code":'.$code.',"name":"'.$name.'"}';
     $x++;
     }
-    echo "]";
+
    }catch(Exception $exception)
     {
-    echo $exception->getMessage();
+//    echo $exception->getMessage();
     }
-
+    echo "]";
 
 ?>
